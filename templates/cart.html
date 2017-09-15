@@ -1,0 +1,29 @@
+<div id="{{handler}}" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Cart</h4>
+            </div>
+            <div class="modal-body">
+                <div ng-if="!cartItems">
+                    <h3>The cart is empty</h3>
+                </div>
+                <div ng-if="cartItems" class="bookItems row" ng-repeat="item in cartItems">
+                    <img class="col-sm-3" ng-src="{{item.image}}" alt="">
+                    <div class="col-sm-3" ng-controller="myModalCtrl">
+                        <a ng-href="details#{{item.id}}" ng-click="modalHide()">{{item.name}}</a>
+                    </div>
+                    <div class="col-sm-3">{{item.price}}</div>
+                    <div class="col-sm-3">{{item.qty}}</div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" ng-controller="cartCtrl" class="btn btn-warning pull-left"
+                        ng-click="removeAllFromCart()">Empty cart
+                </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
