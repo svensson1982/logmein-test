@@ -11,6 +11,7 @@ I think it would be improve this app, in the following:
  
  
  **.htaccess needed** 
+ # but github doesn't support .htaccess file / you can not upload it
 ```
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
