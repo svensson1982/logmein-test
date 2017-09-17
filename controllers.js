@@ -32,7 +32,6 @@ bookApp.controller('BookDetailsCtrl', function ($scope, $sce, BookHttpOneItem) {
             // called asynchronously if an error occurs
         });
     });
-
 });
 
 /**
@@ -67,45 +66,39 @@ bookApp.controller('cartCtrl', function ($scope) {
                 qty: 1
             });
         };
-
         localStorage.setItem('cart', JSON.stringify(cart));
     };
 
     /**
-     * Remove item from cart
-     * @param item
-     */
-/*    $scope.removeFromCart = function(item){
-        var cart = JSON.parse(localStorage.getItem('cart'));
-        //if we already have an item
-        var index = cart.findIndex(function (cartItem) {
-            return cartItem.id === item.id;
-        });
-
-    }*/
-
-    /**
      * remove all items from cart
      */
-/*    $scope.removeAllFromCart = function(){
+    $scope.removeAllFromCart = function(){
         localStorage.removeItem('cart');
-        $('.modal-body').fadeOut(500);
+        $('.modal-body').fadeOut(500, function(){
+            $('#pop').modal('hide');
+            $(this).fadeIn(500);
+        });
     }
 
-    $scope.$watch(function () {
-        return JSON.parse(localStorage.cart).length;
-    },function(newVal,oldVal){
-        if(oldVal!==newVal && newVal === undefined){
-            console.log('It is undefined');
-        }
-    });*/
+    if(localStorage.cart) {
+        $scope.$watch(function () {
+            return JSON.parse(localStorage.cart).length;
+        }, function (newVal, oldVal) {
+            if (oldVal !== newVal && newVal === undefined) {
+                console.log('It is undefined');
+            }
+        });
+    } else{
+        return 0;
+    }
+
 
 });
 
 //modal and get cart items
-bookApp.controller('myModalCtrl', function ($scope, countItem) {
+bookApp.controller('myModalCtrl', function ($scope) {
     $scope.modalHide = function(elem){
-            $('#pop').modal('hide');
+            $(elem).modal('hide');
             $('body').removeClass('modal-open');
             $('.modal-backdrop').remove();
     }
@@ -117,7 +110,11 @@ bookApp.controller('myModalCtrl', function ($scope, countItem) {
 
     $scope.itemInCart = function(){
         if(localStorage.cart){
-            countItem.get();
+            var qty = 0;
+            $.each(JSON.parse(localStorage.getItem('cart')), function (k, v) {
+                qty += parseInt(v.qty);
+            });
+            return qty;
         } else{
             return 0;
         }
@@ -125,7 +122,11 @@ bookApp.controller('myModalCtrl', function ($scope, countItem) {
 
     if(localStorage.cart){
     $scope.$watch(function () {
-        countItem.get();
+        var qty = 0;
+        $.each(JSON.parse(localStorage.getItem('cart')), function (k, v) {
+            qty += parseInt(v.qty);
+        });
+        return qty;
     },function(newVal,oldVal){
         if(oldVal!==newVal && newVal === undefined){
             console.log('It is undefined');

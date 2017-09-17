@@ -39,17 +39,3 @@ bookApp.factory('BookHttpOneItem', function ($http) {
     }
 });
 
-
-bookApp.factory('countItem', function () {
-return{
-    get: function get() {
-        var qty = 0;
-        $.each(JSON.parse(localStorage.getItem('cart')), function (k, v) {
-            qty += parseInt(v.qty);
-        });
-        console.log(qty);
-        return qty;
-    }
-}
-
-});
