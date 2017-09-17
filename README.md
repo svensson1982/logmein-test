@@ -7,7 +7,7 @@ I think it would be improve this app, in the following:
  - Animation when loading
  - Pagination 
  - UnitTest
- - Restful
+ - Restful detail site
  
  
  **.htaccess needed** 
