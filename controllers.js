@@ -22,16 +22,17 @@ bookApp.controller('BookListCtrl', function ($scope, $sce, BookHttp) {
  * Book details controller
  */
 bookApp.controller('BookDetailsCtrl', function ($scope, $sce, BookHttpOneItem) {
-    $scope.$on('$routeChangeSuccess', function () {
+    //$scope.$on('$routeChangeSuccess', function () {
+    $scope.init = function() {
         var id = window.location.hash.substr(1);
-        mybaseurl = $sce.trustAsResourceUrl("https://www.googleapis.com/books/v1/volumes/"+id);
+        mybaseurl = $sce.trustAsResourceUrl("https://www.googleapis.com/books/v1/volumes/" + id);
 
         BookHttpOneItem.get(mybaseurl).then(function success(response) {
             $scope.bookOneItem = response.data;
         }, function error(response) {
             // called asynchronously if an error occurs
         });
-    });
+    };
 });
 
 /**
@@ -44,6 +45,7 @@ bookApp.controller('cartCtrl', function ($scope) {
      * @param item
      */
     $scope.setCart = function (item) {
+        console.log(item);
         //we have something in cart
         var cart = JSON.parse(localStorage.getItem('cart'));
         if (!cart) {
@@ -67,6 +69,7 @@ bookApp.controller('cartCtrl', function ($scope) {
             });
         };
         localStorage.setItem('cart', JSON.stringify(cart));
+
     };
 
     /**
@@ -88,11 +91,7 @@ bookApp.controller('cartCtrl', function ($scope) {
                 console.log('It is undefined');
             }
         });
-    } else{
-        return 0;
     }
-
-
 });
 
 //modal and get cart items

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" ng-init="init()">
     <div class="row">
 
         <div class="col-sm-12" ng-controller="BookDetailsCtrl">
@@ -11,6 +11,7 @@
                         <modal handler="modal" modal-body="cartItems" modal-header="header"></modal>
                         <a ng-click="showModal('#pop')" class="btn btn-info pull-right" data-toggle="modal">
                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                            <span>{{itemInCart()}}</span>
                         </a>
                     </div>
                     <!-- End Cart button / modal -->
@@ -38,7 +39,7 @@
                     <!-- End Book's details -->
                     <button ng-show="bookOneItem.saleInfo.listPrice.amount" class="btn btn-info"
                             ng-controller="cartCtrl"
-                            ng-click="setCart(item)">Add to cart
+                            ng-click="setCart(bookOneItem)">Add to cart
                     </button>
                 </div>
             </div>
