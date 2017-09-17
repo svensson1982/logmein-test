@@ -5,6 +5,7 @@ I think it would be improve this app, in the following:
  - Remove just a certain element from cart.
  - A little bit designless :)
  - Animation when loading
+ - Pagination 
  - UnitTest
  
  
