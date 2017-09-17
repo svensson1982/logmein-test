@@ -83,15 +83,15 @@ bookApp.controller('cartCtrl', function ($scope) {
         });
     }
 
-    if(localStorage.cart) {
         $scope.$watch(function () {
-            return JSON.parse(localStorage.cart).length;
+            if(localStorage.cart != undefined) {
+                return JSON.parse(localStorage.cart).length;
+            }
         }, function (newVal, oldVal) {
             if (oldVal !== newVal && newVal === undefined) {
-                console.log('It is undefined');
+                console.log('It is undefined, probably localStorage is empty.');
             }
         });
-    }
 });
 
 //modal and get cart items
