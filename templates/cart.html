@@ -26,7 +26,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" ng-controller="cartCtrl" class="btn btn-warning pull-left"
+                <button ng-if="cartItems" type="button" ng-controller="cartCtrl" class="btn btn-warning pull-left"
                         ng-click="removeAllFromCart()">Empty cart
                 </button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
